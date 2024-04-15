@@ -34,5 +34,10 @@ namespace Models
 
             Password = password;
         }
+
+        public bool CheckPassword(string password)
+        {
+            return Password == password;
+        }
     }
 }
