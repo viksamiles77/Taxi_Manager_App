@@ -1,7 +1,7 @@
 ﻿using DataAccess;
-using Services.Interfaces;
 using Models;
 using Services.Implementations;
+using Services.Interfaces;
 
 namespace TaxiManagerApp
 {
@@ -12,7 +12,12 @@ namespace TaxiManagerApp
             IUIService uiService = new UIService();
 
             uiService.Login();
-            uiService.ShowMenu();
+
+            while (true)
+            {
+                uiService.ShowMenu();
+                var users = Storage.Users.GetAll();
+            }
         }
     }
 }

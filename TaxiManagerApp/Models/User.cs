@@ -1,4 +1,9 @@
 ﻿using Models.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Models
 {
@@ -6,16 +11,17 @@ namespace Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         private string Password { get; set; }
         public RoleEnum Role { get; set; }
 
-        public User(int id, string firstName, string lastName, string userName, string password, RoleEnum role)
+        public User(int id, string firstName, string lastName, string username, string password, RoleEnum role)
             : base(id)
         {
             FirstName = firstName;
             LastName = lastName;
-            UserName = userName;
+            Username = username;
+            //Password = password;
             SetPassword(password);
             Role = role;
         }
@@ -27,9 +33,9 @@ namespace Models
                 throw new ArgumentException("Password is required");
             }
 
-            if(password.Length < 8)
+            if (password.Length < 8)
             {
-                throw new ArgumentException("Password must be at least 8 characters long.");
+                throw new ArgumentException("Password length needs to be at least 8 chars");
             }
 
             Password = password;

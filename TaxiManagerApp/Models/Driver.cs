@@ -4,31 +4,33 @@ namespace Models
 {
     public class Driver : User
     {
-        public string DriverLicenceNumber { get; set; }
-        public DateTime LicenceExpiryDate { get; set; }
-        public ValidityStatusEnum LicenceStatus
+        public string DriverLicenseNumber { get; set; }
+        public DateTime LicenseExpiryDate { get; set; }
+        public ValidityStatusEnum LicenseStatus
         {
             get
             {
-                //if (LicenceExpiryDate == null) return ValidityStatusEnum.Red;
-                if (LicenceExpiryDate == new DateTime()) return ValidityStatusEnum.Red;
-                else if (LicenceExpiryDate < DateTime.Today) return ValidityStatusEnum.Red;
-                else if (LicenceExpiryDate > DateTime.Today && LicenceExpiryDate <= DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Yellow;
-                else if (LicenceExpiryDate > DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Green;
+                //if (LicenseExpiryDate == null) return ValidityStatusEnum.Red;
+                if (LicenseExpiryDate == new DateTime()) return ValidityStatusEnum.Red;
+                else if (LicenseExpiryDate < DateTime.Today) return ValidityStatusEnum.Red;
+                else if (LicenseExpiryDate > DateTime.Today && LicenseExpiryDate <= DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Yellow;
+                else if (LicenseExpiryDate > DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Green;
                 else return ValidityStatusEnum.Red;
             }
         }
-        public Driver(int id, string firstName, string lastName, string userName, string password, string driverLicenceNumber
-            , DateTime licenceExpiryDate, ValidityStatusEnum licenceStatus)
-            : base(id, firstName, lastName, userName, password, RoleEnum.Driver)
+
+
+        public Driver(int id, string firstName, string lastName, string username, string password,
+            string driverLicenseNumber, DateTime licenseExpiryDate)
+            : base(id, firstName, lastName, username, password, RoleEnum.Driver)
         {
-            DriverLicenceNumber = driverLicenceNumber;
-            LicenceExpiryDate = licenceExpiryDate;
+            DriverLicenseNumber = driverLicenseNumber;
+            LicenseExpiryDate = licenseExpiryDate;
         }
 
-        public void ExtendLicenceExpiryDate(DateTime newExpirationDate)
+        public void ExtendLicenseExpiryDate(DateTime newExpirationDate)
         {
-            LicenceExpiryDate = newExpirationDate;
+            LicenseExpiryDate = newExpirationDate;
         }
     }
 }

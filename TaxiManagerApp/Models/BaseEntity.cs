@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        protected BaseEntity(int id)
+        public BaseEntity(int id)
         {
             Id = id;
         }

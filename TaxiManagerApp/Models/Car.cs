@@ -1,37 +1,42 @@
 ﻿using Models.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Models
 {
     public class Car : BaseEntity
     {
-        public string LicencePlate { get; set; }
-        public DateTime LicencePlateExpiryDate { get; set; }
+        public string LicensePlate { get; set; }
+        public DateTime LicensePlateExpiryDate { get; set; }
         public string Model { get; set; }
         public Dictionary<ShiftEnum, Driver> Drivers { get; set; }
-        public ValidityStatusEnum LicencePlateStatus
+
+        public ValidityStatusEnum LicensePlateStatus
         {
             get
             {
-
-                if (LicencePlateExpiryDate == new DateTime()) return ValidityStatusEnum.Red;
-                else if (LicencePlateExpiryDate < DateTime.Today) return ValidityStatusEnum.Red;
-                else if (LicencePlateExpiryDate > DateTime.Today && LicencePlateExpiryDate <= DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Yellow;
-                else if (LicencePlateExpiryDate > DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Green;
+                if (LicensePlateExpiryDate == new DateTime()) return ValidityStatusEnum.Red;
+                else if (LicensePlateExpiryDate < DateTime.Today) return ValidityStatusEnum.Red;
+                else if (LicensePlateExpiryDate > DateTime.Today && LicensePlateExpiryDate <= DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Yellow;
+                else if (LicensePlateExpiryDate > DateTime.Today.AddMonths(3)) return ValidityStatusEnum.Green;
                 else return ValidityStatusEnum.Red;
             }
         }
 
-        public Car(int id, string licencePlate, DateTime licencePlateExpiryDate, string model) : base(id)
+        public Car(int id, string licensePlate, DateTime licensePlateExpriyDate, string model) : base(id)
         {
-            LicencePlate = licencePlate;
-            LicencePlateExpiryDate = licencePlateExpiryDate;
+            LicensePlate = licensePlate;
+            LicensePlateExpiryDate = licensePlateExpriyDate;
             Model = model;
             Drivers = new Dictionary<ShiftEnum, Driver>();
         }
 
-        public void ExtendLicencePlateExpiryDate()
+        public void ExtendLicensePlateExpiryDate()
         {
-            LicencePlateExpiryDate = LicencePlateExpiryDate.AddMonths(6);
+            LicensePlateExpiryDate = LicensePlateExpiryDate.AddMonths(6);
         }
     }
 }

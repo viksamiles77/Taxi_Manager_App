@@ -5,6 +5,7 @@ namespace DataAccess
     public class StorageSet<T> : IStorageSet<T> where T : BaseEntity
     {
         public List<T> Items { get; set; } = new List<T>();
+
         public void Add(T entity)
         {
             if (entity.Id != 0)
@@ -21,6 +22,7 @@ namespace DataAccess
             {
                 entity.Id = 1;
             }
+
             Items.Add(entity);
         }
 
@@ -35,7 +37,7 @@ namespace DataAccess
 
             if (item == null)
             {
-                throw new KeyNotFoundException($"Entity with ID = {id} does not exist");
+                throw new KeyNotFoundException($"Entity with Id = {id} does not exit");
             }
 
             return item;
@@ -47,10 +49,11 @@ namespace DataAccess
 
             if (item == null)
             {
-                throw new KeyNotFoundException($"Entity with ID = {entity.Id} does not exist");
+                throw new KeyNotFoundException($"Entity with Id = {entity.Id} does not exit");
             }
 
             int index = Items.IndexOf(item);
+
             Items[index] = entity;
         }
 
@@ -65,8 +68,9 @@ namespace DataAccess
 
             if (item == null)
             {
-                throw new KeyNotFoundException($"Entity with ID = {id} does not exist");
+                throw new KeyNotFoundException($"Entity with Id = {id} does not exit");
             }
+
             Items.Remove(item);
         }
     }
